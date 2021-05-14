@@ -1,6 +1,10 @@
 import torch
 import numpy as np
 
+dtype = torch.double
+cpu = torch.device("cpu")
+gpu = torch.device("cuda")
+
 def model(depth, n0, nd, hidden_width, std = 1):
   if isinstance(hidden_width, list) is False:
     hidden_width = [hidden_width for i in range(depth-1)]
