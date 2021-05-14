@@ -12,7 +12,7 @@ setup(
     name='finite-width-bayesian',
     license='MIT License',
     author='Pehlevan Group',
-    author_email='canatara@gmail.com',
+    author_email='',
     install_requires=INSTALL_REQUIRES,
     url='https://github.com/Pehlevan-Group/finite-width-bayesian',
     long_description=long_description,
