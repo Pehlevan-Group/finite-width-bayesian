@@ -143,9 +143,9 @@ class Langevin():
       target = lambda x: x @ self.w_target.T
 
       self.Gxx = (self.x_train @ self.x_train.T)
-      self.Gyy = (target(x_train) @ target(x_train).T/self.nd)
+      self.Gyy = (target(self.x_train) @ target(self.x_train).T/self.nd)
 
-      I = torch.eye(self.N_tr,device=gpu,dtype=dtype)
+      I = torch.eye(self.N_tr, device=gpu, dtype=dtype)
       gamma = I/beta + self.Gxx
       gamma_inv = torch.linalg.inv(gamma)
       prefactor = self.nd/self.hidden_width
