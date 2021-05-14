@@ -9,7 +9,7 @@ with open(path.join(this_directory, 'README.md'), encoding='utf-8') as f:
 INSTALL_REQUIRES = []
 
 setup(
-    name='kernel-generalization',
+    name='finite-width-bayesian',
     license='MIT License',
     author='Pehlevan Group',
     author_email='canatara@gmail.com',
