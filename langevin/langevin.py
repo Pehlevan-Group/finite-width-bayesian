@@ -1,6 +1,20 @@
 import torch
 import numpy as np
 
+def model(depth, n0, nd, hidden_width, std = 1):
+  if isinstance(hidden_width, list) is False:
+    hidden_width = [hidden_width for i in range(depth-1)]
+  else:
+    assert(len(hidden_width) == depth - 1)
+  
+  widths = np.array([n0, *hidden_width, nd])
+
+  W = []
+  for i in range(len(widths) - 1):
+    W += [torch.normal(0,std,(widths[i],widths[i+1]), device=gpu, dtype=dtype, requires_grad=True)]
+
+  return W
+
 class Langevin():
     def __init__(self, w_target, x_train, n0, nd, N_tr, N_test, depth, hidden_width, std = 1):
       ## Specify the dataset
