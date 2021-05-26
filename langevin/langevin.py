@@ -21,7 +21,7 @@ def model(depth, n0, nd, hidden_width, std = 1):
   return W
 
 class Langevin():
-    def __init__(self, w_target, x_train, n0, nd, N_tr, N_test, depth, hidden_width, std = 1):
+    def __init__(self, y_train, x_train, n0, nd, N_tr, N_test, depth, hidden_width, std = 1):
       ## Specify the dataset
       self.n0 = n0   # Input dimensionality
       self.nd = nd   # Output dimensionality
@@ -30,7 +30,7 @@ class Langevin():
       self.N_tr = N_tr     # Training set size
       self.N_test = N_test # Test set size
 
-      self.w_target = w_target # Target function
+      self.y_train = y_train # Target function
       self.x_train = x_train
 
       ### Intialize the model and create random weight tensors
@@ -69,8 +69,7 @@ class Langevin():
       beta = beta  # Inverse temperature
       nT = nT      # Number of training timesteps
 
-      target = lambda x: x @ self.w_target.T
-      y_train = target(self.x_train)
+      y_train = self.y_train
 
       # Iterate over training steps
       t_init = time.time()
@@ -143,8 +142,8 @@ class Langevin():
     def theory(self, beta):
       target = lambda x: x @ self.w_target.T
 
-      self.Gxx = (self.x_train @ self.x_train.T)
-      self.Gyy = (target(self.x_train) @ target(self.x_train).T/self.nd)
+      self.Gxx = (self.x_train @ self.x_train.T)/self.n0
+      self.Gyy = (self.y_train @ self.y_train.T)/self.nd
 
       I = torch.eye(self.N_tr, device=gpu, dtype=dtype)
       gamma = I/beta + self.Gxx
@@ -164,7 +163,7 @@ class Langevin():
 
     def final_params():
       params = {'n0': self.n0, 'nd': self.nd, 'N_tr': self.N_tr, 'N_test': self.N_test,
-                'w_target': self.w_target, 'x_train': self.x_train,
+                'y_train': self.y_train, 'x_train': self.x_train,
                 'depth': self.depth, 'hidden_width': self.hidden_width,
                 'avg_count': self.avg_count, 'W_avg': self.W_avg, 'K_avg': self.K_avg,
                 'Gxx': self.Gxx, 'Gyy': self.Gyy, 
