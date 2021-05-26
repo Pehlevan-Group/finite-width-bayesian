@@ -47,8 +47,6 @@ class Langevin():
 
       # Store weight averages
       self.W_avg = []
-      for w in self.W:
-        self.W_avg += [torch.zeros(w.shape,device=gpu,dtype=dtype)]
 
       # Store layer kernel averages
       self.K_avg = []
