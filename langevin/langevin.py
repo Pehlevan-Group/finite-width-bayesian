@@ -114,9 +114,9 @@ class Langevin():
             self.W_avg[i] += self.W[i].detach()
             self.K_avg[i] += (h[i] @ h[i].T).detach() / h[i].shape[1]
 
-          # Print and store the training error
-          if t % 1000 == 0 or t == 0: 
-            print("Epoch: %d | loss: %.4e | test_err: %.4e | avg_count: %d | %0.2f sec."%(t, loss.item(), self.test_error[-1], self.avg_count, time.time()-t_init))
+        # Print and store the training error
+        if t % 1000 == 0 or t == 0: 
+          print("Epoch: %d | loss: %.4e | test_err: %.4e | avg_count: %d | %0.2f sec."%(t, loss.item(), self.test_error[-1], self.avg_count, time.time()-t_init))
 
         if self.avg_count > 10000:
           break
