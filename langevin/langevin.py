@@ -108,7 +108,7 @@ class Langevin():
               w.grad = None
 
         # Compute averaged weight matrices online once loss = noise
-        if loss.item() < nT/3:
+        if loss.item() > nT/4:
           self.avg_count += 1
           for i in range(len(h)):
             self.W_avg[i] += self.W[i].detach()
