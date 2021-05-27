@@ -111,7 +111,7 @@ class Langevin():
         if t > nT/4:
           self.avg_count += 1
           for i in range(len(h)):
-            self.W_avg[i] += self.W[i].detach()
+            #self.W_avg[i] += self.W[i].detach()
             self.K_avg[i] += (h[i] @ h[i].T).detach() / h[i].shape[1]
 
         # Print and store the training error
