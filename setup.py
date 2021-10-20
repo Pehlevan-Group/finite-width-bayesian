@@ -8,7 +8,7 @@ with open(path.join(this_directory, 'README.md'), encoding='utf-8') as f:
     
 INSTALL_REQUIRES = [
     'jax>=0.1.77',
-    'neural-tangets'
+    'neural-tangents'
 ]
 
 setup(
