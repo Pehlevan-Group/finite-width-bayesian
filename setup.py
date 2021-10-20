@@ -19,7 +19,7 @@ setup(
     install_requires=INSTALL_REQUIRES,
     url='https://github.com/Pehlevan-Group/finite-width-bayesian',
     long_description=long_description,
-    packages=['jax', 'neural-tangents'],
+    packages=setuptools.find_packages(),
     long_description_content_type='text/markdown',
     description='Representatian Learning in Wide Bayesian Neural Networks',
     python_requires='>=3.6')
