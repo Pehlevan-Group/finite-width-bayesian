@@ -170,12 +170,12 @@ def correction_layer(Kl, Phi):
         raise NotImplementedError('wtf')
         
         
-def convert_nt(tensor, conv_layer = None):
+# def convert_nt(tensor, conv_layer = None):
     
-    if len(tensor.shape) != 6:
-        return tensor
-    elif conv_layer != None:
-        if (conv_layer + 1) % 2 == 1:
-            tensor = np.moveaxis(tensor, (2,3), (4,5))
+#     if len(tensor.shape) != 6:
+#         return tensor
+#     elif conv_layer != None:
+#         if (conv_layer + 1) % 2 == 1:
+#             tensor = np.moveaxis(tensor, (2,3), (4,5))
     
-    return np.moveaxis(tensor, (3,4),(4,3))
+#     return np.moveaxis(tensor, (3,4),(4,3))
