@@ -1,6 +1,7 @@
 import numpy as np
 import jax.numpy as jnp
 import neural_tangents as nt
+import langevin.utils.convert_nt as convert_nt 
 
 from jax.config import config
 config.update("jax_enable_x64", True)
