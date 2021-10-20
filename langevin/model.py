@@ -2,7 +2,7 @@ import numpy as np
 from neural_tangents import stax
 import neural_tangents as nt
 
-from jax.api import jit, grad, vmap
+from jax import jit, grad, vmap
 from jax.config import config
 config.update("jax_enable_x64", True)
 
