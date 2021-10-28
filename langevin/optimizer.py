@@ -10,9 +10,8 @@ def sgld(step_size, beta, batch_factor):
         key0 = random.PRNGKey(1)
         return x0, key0
     
-    def update(i, g, state):
-        g, key = g
-        x, key = state
+    def update(i, g, state, key):
+        x, _ = state
 #         _, key = random.split(key)
         x -= step_size(i) * (batch_factor*g + x/beta) + jnp.sqrt(2*step_size(i)/beta) * random.normal(key, shape=g.shape)
         return x, key
