@@ -11,8 +11,9 @@ def sgld(step_size, beta, batch_factor):
         return x0, key0
     
     def update(i, g, state):
+        g, key = g
         x, key = state
-        _, key = random.split(key)
+#         _, key = random.split(key)
         x -= step_size(i) * (batch_factor*g + x/beta) + jnp.sqrt(2*step_size(i)/beta) * random.normal(key, shape=g.shape)
         return x, key
     
