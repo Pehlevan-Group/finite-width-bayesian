@@ -14,7 +14,7 @@ def sgld(step_size, beta, batch_factor):
         x, key = state
         _,key = random.split(key)
         x -= step_size(i) * (batch_factor*g + x/beta) + jnp.sqrt(2*step_size(i)/beta) * random.normal(key, shape=g.shape)
-        return x
+        return x, key
     
     def get_params(state):
         x,_ = state
