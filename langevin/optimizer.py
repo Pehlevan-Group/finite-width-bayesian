@@ -7,12 +7,12 @@ from jax.experimental.optimizers import optimizer, make_schedule, Optimizer
 def sgld(step_size, beta, batch_factor):
     step_size = make_schedule(step_size)
     def init(x0):
-        key0 = random.PRNGKey(1)
+        key0 = random.PRNGKey(0)
         return x0, key0
     
-    def update(i, g, state, key):
-        x, _ = state
-#         _, key = random.split(key)
+    def update(i, g, state):
+        x, key= state
+        key = random.PRNGKey(i)
         x -= step_size(i) * (batch_factor*g + x/beta) + jnp.sqrt(2*step_size(i)/beta) * random.normal(key, shape=g.shape)
         return x, key
     
