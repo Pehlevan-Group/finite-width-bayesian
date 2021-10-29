@@ -1,4 +1,4 @@
-# finite-width-bayesian
+# Code for Asymptotics of representation learning in finite Bayesian neural networks
 
 For Experiments with Linear FCNs: [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/Pehlevan-Group/finite-width-bayesian/blob/main/linear_fcn_experiments.ipynb)
 
